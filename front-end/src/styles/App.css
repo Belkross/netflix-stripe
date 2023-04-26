@@ -1,0 +1,38 @@
+#root {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.selected {
+	background-color: aliceblue;
+}
+
+.payment-form {
+	width: 100%;
+	max-width: 400px;
+	text-align: center;
+}
+
+.payment-form button {
+	margin-top: 20px;
+}
+
+.success {
+	color: darkgreen;
+}
+
+.error {
+	color: red;
+	font-size: 20px;
+}
+
+.plan {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	border: 1px solid black;
+	margin-bottom: 8px;
+	padding: 16px;
+}
