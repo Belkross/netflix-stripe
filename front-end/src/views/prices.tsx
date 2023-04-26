@@ -18,7 +18,10 @@ export function Prices() {
 		const fetchProducts = async () => {
 			const { success, products } = await getProducts()
 			if (!ignore && success) setProducts(products)
-			else if (!ignore && !success) console.error("error when fetching products")
+			else if (!ignore && !success)
+				setFeedback(
+					"Produits en cours de création sur le serveur Stripe. Réessayez plus tard en rafraichissant la page."
+				)
 		}
 		fetchProducts()
 

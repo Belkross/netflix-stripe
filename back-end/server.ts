@@ -45,7 +45,10 @@ app.get("/get-products", async (req: Request, res: Response) => {
 		const searchResult = await stripe.products.search({
 			query: `metadata['productType']:'${PRODUCT_TYPE}' metadata['premium']:'false'`,
 		})
-		res.json({ products: searchResult.data, success: true })
+
+		const productsNotReadyYet = searchResult.data.length === 0
+		if (productsNotReadyYet) throw new Error()
+		else res.json({ products: searchResult.data, success: true })
 	} catch (error) {
 		console.error(error)
 		res.status(400).json({ success: false })
