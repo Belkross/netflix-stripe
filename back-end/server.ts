@@ -42,7 +42,7 @@ app.post("/create-customer", async (req: Request, res: Response) => {
 app.get("/get-products", async (req: Request, res: Response) => {
 	try {
 		const searchResult = await stripe.products.search({
-			query: `metadata['productType']:'belkross-netflix' metadata['premium']:'false'`,
+			query: `metadata['productType']:'${PRODUCT_TYPE}' metadata['premium']:'false'`,
 		})
 		res.json({ products: searchResult.data, success: true })
 	} catch (error) {
