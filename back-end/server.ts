@@ -1,17 +1,17 @@
-import { Request, Response } from "express"
+import express, { Request, Response } from "express"
 import { createProductsAndPrices } from "./assets/create-products-and-prices"
 import { PRODUCT_TYPE } from "./assets/products"
-
-require("dotenv").config()
-const express = require("express")
-const app = express()
 const PORT = process.env.PORT || 1000
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 const cors = require("cors")
 const bodyParser = require("body-parser")
 
+require("dotenv").config()
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+const app = express()
+
 createProductsAndPrices(stripe)
 
+//Middlewares
 app.use(
 	cors({
 		origin: "*",
@@ -19,6 +19,7 @@ app.use(
 )
 app.use(bodyParser.json())
 
+//Routes
 app.post("/create-customer", async (req: Request, res: Response) => {
 	try {
 		const { email } = req.body
