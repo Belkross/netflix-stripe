@@ -1,12 +1,15 @@
+import * as dotenv from "dotenv"
+dotenv.config()
+
 import express, { Request, Response } from "express"
+import Stripe from "stripe"
+import cors from "cors"
+import bodyParser from "body-parser"
 import { createProductsAndPrices } from "./assets/create-products-and-prices"
 import { PRODUCT_TYPE } from "./assets/products"
-const PORT = process.env.PORT || 1000
-const cors = require("cors")
-const bodyParser = require("body-parser")
+import { PORT, STRIPE_CONFIG, STRIPE_SECRET_KEY } from "./config/config"
 
-require("dotenv").config()
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(STRIPE_SECRET_KEY, STRIPE_CONFIG)
 const app = express()
 
 createProductsAndPrices(stripe)
@@ -82,9 +85,12 @@ app.post("/create-subscription", async (req: Request, res: Response) => {
 			expand: ["latest_invoice.payment_intent"],
 		})
 
+		const latestInvoice = await stripe.invoices.retrieve(subscription.latest_invoice as string)
+		const paymentIntent = await stripe.paymentIntents.retrieve(latestInvoice.payment_intent as string)
+
 		res.json({
 			subscription,
-			clientSecret: subscription.latest_invoice.payment_intent.client_secret,
+			clientSecret: paymentIntent.client_secret,
 			success: true,
 		})
 	} catch (error) {
