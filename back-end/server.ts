@@ -8,17 +8,14 @@ import bodyParser from "body-parser"
 import { createProductsAndPrices } from "./assets/create-products-and-prices"
 import { PRODUCT_TYPE } from "./assets/products"
 import { PORT, STRIPE_CONFIG, STRIPE_SECRET_KEY } from "./config/config"
+import { corsOptions } from "./config/cors"
 
 const app = express()
 const stripe = new Stripe(STRIPE_SECRET_KEY, STRIPE_CONFIG)
 createProductsAndPrices(stripe)
 
 //Middlewares
-app.use(
-	cors({
-		origin: "*",
-	})
-)
+app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
 //Routes
