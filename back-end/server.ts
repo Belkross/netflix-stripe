@@ -9,9 +9,8 @@ import { createProductsAndPrices } from "./assets/create-products-and-prices"
 import { PRODUCT_TYPE } from "./assets/products"
 import { PORT, STRIPE_CONFIG, STRIPE_SECRET_KEY } from "./config/config"
 
-const stripe = new Stripe(STRIPE_SECRET_KEY, STRIPE_CONFIG)
 const app = express()
-
+const stripe = new Stripe(STRIPE_SECRET_KEY, STRIPE_CONFIG)
 createProductsAndPrices(stripe)
 
 //Middlewares
