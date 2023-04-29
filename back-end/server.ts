@@ -81,10 +81,11 @@ app.post("/create-subscription", async (req: Request, res: Response) => {
 			expand: ["latest_invoice.payment_intent"],
 		})
 
-		const latestInvoice = await stripe.invoices.retrieve(subscription.latest_invoice as string)
-		const paymentIntent = await stripe.paymentIntents.retrieve(latestInvoice.payment_intent as string)
+		const latestInvoice = subscription.latest_invoice as Stripe.Invoice
+		const paymentIntent = latestInvoice.payment_intent as Stripe.PaymentIntent
 
 		res.json({
+			thing: subscription.latest_invoice,
 			subscription,
 			clientSecret: paymentIntent.client_secret,
 			success: true,
