@@ -1,3 +1,4 @@
+import { AsyncOutcome } from "@belkross-stripe/types/main"
 import { SERVER_URL } from "../constants/constants"
 
 export async function postCustomer(email: string): Promise<AsyncOutcome> {

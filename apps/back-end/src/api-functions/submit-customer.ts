@@ -1,5 +1,5 @@
+import { AsyncOutcome } from "@belkross-stripe/types/main"
 import { stripe } from "../server"
-import { AsyncOutcome } from "../types/types"
 
 export async function submitCustomer(email: string): Promise<AsyncOutcome> {
 	try {
