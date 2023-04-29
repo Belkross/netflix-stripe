@@ -8,8 +8,9 @@ export const Register = () => {
 
 	const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
 		event.preventDefault()
-		const result = await postCustomer(email)
-		if (result.success) dispatch({ type: "logged-in", payload: email })
+		const { succeeded } = await postCustomer(email)
+		if (succeeded) dispatch({ type: "logged-in", payload: email })
+		else alert(new Error("login"))
 	}
 
 	return (

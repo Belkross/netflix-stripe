@@ -1,24 +1,13 @@
 import { Router, Request, Response } from "express"
-import { stripe } from "../server"
+import { submitCustomer } from "../api-functions/submit-customer"
 
 export const routerCustomer = Router()
 
 routerCustomer.post("/", async (req: Request, res: Response) => {
-	try {
-		const { email } = req.body
-		const searchResult = await stripe.customers.search({ query: `email:'${email}'` })
+	const { email } = req.body
 
-		const noCustomerFound = searchResult.data.length === 0
-		if (noCustomerFound) {
-			await stripe.customers.create({ email })
-			console.log(`customer created: ${email}`)
-		} else {
-			console.log(`customer found: ${email}`)
-		}
+	const { succeeded } = await submitCustomer(email)
 
-		res.json({ success: true })
-	} catch (error) {
-		console.error(error)
-		res.status(400).json({ success: false })
-	}
+	if (succeeded) res.status(200).end()
+	else res.status(400).end()
 })
