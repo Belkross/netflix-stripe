@@ -1,7 +1,7 @@
 import { SERVER_URL } from "../constants/constants"
 
 export async function postCustomer(email: string) {
-	return await fetch(`${SERVER_URL}/create-customer`, {
+	return await fetch(`${SERVER_URL}/customer`, {
 		method: "post",
 		headers: {
 			"Content-Type": "application/json",
