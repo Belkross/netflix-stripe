@@ -4,7 +4,7 @@ import { useAppState, useAppStateDispatch } from "../context/context-app-state"
 import Stripe from "stripe"
 import { calculateFinalPrice } from "../helpers/calculate-final-price"
 import { postSubscription } from "../api/post-subscription"
-import { FlowlessFunction } from "@belkross-stripe/types/main"
+import { FlowlessFunction } from "@belkross-stripe/types"
 
 export function Prices() {
 	const [products, setProducts] = useState<Stripe.Product[]>([])

@@ -1,4 +1,4 @@
-import { AsyncOutcome, PayloadPostSubscription } from "@belkross-stripe/types/main"
+import { AsyncOutcome, PayloadPostSubscription } from "@belkross-stripe/types"
 import Stripe from "stripe"
 import { PRODUCT_TYPE } from "../assets/products"
 import { stripe } from "../server"

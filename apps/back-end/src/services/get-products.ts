@@ -1,4 +1,4 @@
-import { AsyncOutcome } from "@belkross-stripe/types/main"
+import { AsyncOutcome } from "@belkross-stripe/types"
 import { PRODUCT_TYPE } from "../assets/products"
 import Stripe from "stripe"
 import { stripe } from "../server"

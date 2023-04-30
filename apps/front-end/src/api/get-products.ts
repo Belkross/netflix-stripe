@@ -1,4 +1,4 @@
-import { AsyncOutcome } from "@belkross-stripe/types/main"
+import { AsyncOutcome } from "@belkross-stripe/types"
 import { SERVER_URL } from "../constants/constants"
 import Stripe from "stripe"
 

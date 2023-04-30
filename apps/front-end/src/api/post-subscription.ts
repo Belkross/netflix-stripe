@@ -1,4 +1,4 @@
-import { AsyncOutcome, PayloadPostSubscription } from "@belkross-stripe/types/main"
+import { AsyncOutcome, PayloadPostSubscription } from "@belkross-stripe/types"
 import { SERVER_URL } from "../constants/constants"
 
 type Parameters = {
