@@ -1,19 +1,35 @@
+import { AsyncOutcome, PayloadPostSubscription } from "@belkross-stripe/types/main"
 import { SERVER_URL } from "../constants/constants"
 
-export async function postSubscription(multiUser: boolean | undefined, premium: boolean, email: string) {
-	if (multiUser === undefined) return
+type Parameters = {
+	multiUser: boolean | undefined
+	premium: boolean
+	email: string
+}
 
-	return await fetch(`${SERVER_URL}/subscription`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			multiUser: multiUser,
-			premium: premium,
-			customerEmail: email,
-		}),
-	})
-		.then((response) => response.json())
-		.catch((response) => response.json())
+export async function postSubscription(parameters: Parameters): Promise<AsyncOutcome<PayloadPostSubscription>> {
+	const { multiUser, premium, email } = parameters
+
+	if (multiUser === undefined) return { succeeded: false }
+	try {
+		const response = await fetch(`${SERVER_URL}/subscription`, {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				multiUser,
+				premium,
+				email,
+			}),
+		})
+
+		if (response.ok) {
+			const payload = await response.json()
+			return { succeeded: true, payload }
+		} else throw new Error()
+	} catch (error) {
+		console.error(error)
+		return { succeeded: false }
+	}
 }

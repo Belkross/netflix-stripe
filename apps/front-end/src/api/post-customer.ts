@@ -13,7 +13,7 @@ export async function postCustomer(email: string): Promise<AsyncOutcome> {
 			}),
 		})
 
-		if (response.ok) return { succeeded: true }
+		if (response.ok) return { succeeded: true, payload: undefined }
 		else throw new Error()
 	} catch (error) {
 		console.error(error)

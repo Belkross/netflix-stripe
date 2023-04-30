@@ -31,9 +31,8 @@ export function Prices() {
 
 	const handleSubmit = async () => {
 		try {
-			const { success, subscription, clientSecret } = await postSubscription(multiUser, premium, email)
-
-			if (success) dispatch({ type: "subscription-created", payload: { subscription, clientSecret } })
+			const { succeeded, payload } = await postSubscription({ multiUser, premium, email })
+			if (succeeded) dispatch({ type: "subscription-created", payload })
 			else setFeedback("Compte client en cours de création, réessayer plus tard.")
 		} catch (error) {
 			console.error(error)

@@ -13,7 +13,7 @@ export async function submitCustomer(email: string): Promise<AsyncOutcome> {
 			console.log(`existing customer found: ${email}`)
 		}
 
-		return { succeeded: true }
+		return { succeeded: true, payload: undefined }
 	} catch (error) {
 		console.error(error)
 		return { succeeded: false }
