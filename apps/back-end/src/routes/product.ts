@@ -7,5 +7,5 @@ routerProduct.get("/", async (req: Request, res: Response) => {
 	const { succeeded, payload } = await getProducts()
 
 	if (succeeded) res.status(200).json(payload)
-	else res.status(400)
+	else res.status(400).end()
 })
