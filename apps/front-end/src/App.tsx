@@ -1,7 +1,7 @@
 import { useMemo, useReducer } from "react"
 import "./styles/App.css"
 import { Register } from "./views/register"
-import { Prices } from "./views/prices"
+import { Prices } from "./views/prices/prices"
 import { reducerAppState } from "./components/reducer-app-state"
 import { AppStateContext, AppStateDispatchContext } from "./context/context-app-state"
 import { StripeContainer } from "./components/stripe-container"
