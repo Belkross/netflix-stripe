@@ -17,9 +17,9 @@ export function Prices() {
 		let ignore = false
 
 		const fetchProducts = async () => {
-			const { success, products } = await getProducts()
-			if (!ignore && success) setProducts(products)
-			else if (!ignore && !success)
+			const { succeeded, payload: products } = await getProducts()
+			if (!ignore && succeeded) setProducts(products ?? [])
+			else if (!ignore && !succeeded)
 				setFeedback(
 					"Produits en cours de création sur le serveur Stripe. Réessayez plus tard en rafraichissant la page."
 				)

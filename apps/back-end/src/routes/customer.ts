@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express"
-import { submitCustomer } from "../api-functions/submit-customer"
+import { submitCustomer } from "../services/submit-customer"
 
 export const routerCustomer = Router()
 
