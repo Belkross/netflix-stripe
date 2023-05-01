@@ -18,5 +18,4 @@ export function useGetProducts(setProducts: Dispatch<SetStateAction<Stripe.Produ
 	}, [setProducts])
 }
 
-const errorMessage =
-	"Produits en cours de création sur le serveur Stripe. Réessayez plus tard en rafraichissant la page."
+const errorMessage = "Les produits ne sont pas encore disponible. Réessayez plus tard en rafraichissant la page."
