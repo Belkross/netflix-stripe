@@ -1,20 +1,24 @@
-# Pour tester le projet en local
+# Netflix Stripe
 
-Créez d’abord un compte Stripe et munissez-vous de vos clés publique et secrète.  
-Plus d’informations ici: https://stripe.com/docs/keys
+This project allow a user to subscribe for a monthly payment with Stripe under the hood.
 
-## Lancer le back-end
+# Features
 
-- Renseigner votre clé secrète Stripe dans le fichier .env du dossier back-end
-- "npm install" depuis le dossier back-end
-- "npm run start" depuis le dossier back-end
+- Create a Stripe customer with a provided email
+- Allow the user to pick an billing plan
+- Create the invoice of a monthly subscription
+- Payment with a credit card
 
-## Lancer le front-end
+# Deployment
 
-- Renseigner votre clé publique Stripe dans de fichier .env du dossier front-end
-- "npm install" depuis le dossier front-end
-- "npm run start" depuis le dossier front-end
+To begin, you need a Stripe account and to get your Stripe’s API test keys. More informations here:
+https://stripe.com/docs/keys
+
+1. Provide your Stripe’s secret API key in ./apps/back-end/.env
+2. Provide your Stripe’s public API key in ./apps/front-end/.env
+3. pnpm install
+4. pnpm run dev
 
 ## Important
 
-Pour tester un numéro de carte de crédit valide utilisez le numéro suivant: 4242 4242 4242 4242
+If you want to test a valid credit card number, use this one: 4242 4242 4242 4242
